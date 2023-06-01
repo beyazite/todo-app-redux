@@ -1,7 +1,8 @@
-import {useState, useEffect} from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import {useState} from 'react'
+import { useDispatch } from 'react-redux';
 import { addTodo, searchWord } from "../redux/todo-slice/todoSlice";
 import { nanoid } from '@reduxjs/toolkit';
+import moment from 'moment/moment';
 
 function Header() {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ function Header() {
 
     e.preventDefault();
 
-    dispatch(addTodo({ id: nanoid(), title, completed: false, colorGroup: "black"}));
+    dispatch(addTodo({ id: nanoid(), title, completed: false, colorGroup: "black", time: new Date() }));
 
     setTitle("");
   };

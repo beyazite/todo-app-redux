@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {   removeItem, selectFiltered, toggleCompleted } from '../redux/todo-slice/todoSlice'
+import moment from 'moment';
 
 function List() {
   
@@ -9,6 +10,7 @@ function List() {
   // 0 const todoItems = useSelector(state => state.todos.items)
   
   const todoItems = useSelector(selectFiltered);
+ 
 
   const searching = useSelector(state => state.todos.searching);
 
@@ -23,6 +25,24 @@ function List() {
     dispatch(toggleCompleted({id: id}))
   }
 
+  // var a = [];
+  // let b =[];
+  // for (var i = 0; i < localStorage.length; i++) {
+
+  //   // set iteration key name
+  //   var key = localStorage.key(i);
+  
+  //   // use key name to retrieve the corresponding value
+  //   var value = localStorage.getItem(key);
+  
+  
+   
+  //   a.push(value);
+
+  //  b.push(JSON.parse(a[i]));
+
+  //  console.log(b);
+  // }
 
 
   return (
@@ -53,7 +73,7 @@ function List() {
 <div>
           {
           todoItems
-       .filter((item) => {
+          .filter((item) => {
         return !searching ? item 
         : item.title.toLowerCase().includes(searching.toLowerCase());
        })
@@ -66,9 +86,14 @@ function List() {
 
         </div>
         
+
         
        ))
-         }
+           
+       
+       }
+
+
         </div>
       
       

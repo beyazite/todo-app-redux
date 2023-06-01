@@ -1,11 +1,11 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch,  } from 'react-redux'
 import {changeActiveFilter, removeAll} from "../redux/todo-slice/todoSlice"
 
 function Options() {
 
   const dispatch = useDispatch();
 
+ 
   
 
   return (
