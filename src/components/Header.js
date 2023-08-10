@@ -25,6 +25,7 @@ function Header() {
 
   return (
     <div style={{width: 500}}>
+      
       <form >
       <input placeholder='Search' onChange={(e) => searchBitch(e.target.value)} />
 

@@ -3,7 +3,7 @@ import MainComp from './components/MainComp';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App"  >
       <MainComp />
     </div>
   );

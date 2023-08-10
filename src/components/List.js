@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {   removeItem, selectFiltered, toggleCompleted } from '../redux/todo-slice/todoSlice'
+import { openModal } from '../redux/todo-slice/modalSlice';
 import moment from 'moment';
 
 function List() {
@@ -23,6 +24,13 @@ function List() {
 
   const isCompl = (id) => {
     dispatch(toggleCompleted({id: id}))
+  }
+
+  const editHandle = (item) => {
+    dispatch(openModal({
+      name: item.id,
+      data: item
+    }))
   }
 
   // var a = [];
@@ -81,7 +89,7 @@ function List() {
         
         <div key={item.id} style={{backgroundColor: "purple"}}>
           <p  onClick={() => isCompl(item.id)} style={{textDecoration: item.completed ? "line-through" : "none"}}>{item.title}</p>
-          <button>Edit</button>
+          <button onClick={() => editHandle(item)}>Edit</button>
           <button onClick={() => handleDestroy(item.id)}>X</button>
 
         </div>
