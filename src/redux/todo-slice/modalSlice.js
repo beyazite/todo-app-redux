@@ -12,7 +12,6 @@ export const modalSlice = createSlice({
     reducers: {
         openModal: (state, action) => {
             state.name = action.payload.name;
-            // state.data = action.payload?.data || false; // data yoksa false olsun
             state.data = action.payload.data;
             state.open = true;
         } ,

@@ -1,16 +1,6 @@
 import { createSlice , } from "@reduxjs/toolkit";
-import { nanoid } from "@reduxjs/toolkit";
+// import { nanoid } from "@reduxjs/toolkit";
 
-let abc = {...localStorage};
-console.log(abc);
-// get localStorage values starts
-let localS = [];
-for (let i = 0; i < localStorage.length; i++) {
-     localS.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-  }
-  console.log(localS);
-
-// get localStorage values ends
 
 // initial state declaration starts
   var c = [];
@@ -39,44 +29,15 @@ const initialState = {items: d, activeFilter: "all"};
 export const todoSlice = createSlice({
     name: "todos",
      initialState
-    //  {
-    //     items: [
-    //         {
-    //             id: nanoid(),
-    //             title: "Prank Frank!",
-    //             completed: false,
-    //             colorGroup: "black",
-                
-    //         },
-    //         {
-    //             id: nanoid(),
-    //             title: "Conclude Redux Todo App until thursday night.",
-    //             completed: false,
-    //             colorGroup: "red"
-    //         },
-            
-    //     ],
-        
-    // activeFilter: "all",
-    // }
      ,
     searching: false,
-    done: false,
         reducers: {
-            // addTodo: (state,action) => {
-            //     state.items.push(action.payload);
-            // },
             addTodo: (state,action) => {
                 localStorage.setItem(action.payload.id,JSON.stringify(action.payload));
-                //state.items.unshift(action.payload);
+                
                 state.items = [action.payload, ...state.items]
             },
 
-            // removeItem: (state,action) => {
-            //     const id = action.payload;
-            //     const filtered = state.items.filter((item) => item.id !== id);
-            //     state.items = filtered;
-            // },
 
               removeItem: (state,action) => {
                  const id = action.payload;
@@ -94,7 +55,6 @@ export const todoSlice = createSlice({
                 const filtered = state.items.filter((item)=> item.id !== id);
                 state.items = filtered;
                 state.items = [action.payload, ...state.items];
-                //state.items = [action.payload, ...todos];
                },
 
             searchWord: (state, action) => {
@@ -113,13 +73,9 @@ export const todoSlice = createSlice({
             
             changeActiveFilter: (state,action) => {
                 state.activeFilter = action.payload;
-                // const activeFil = action.payload;
-                // localStorage.setItem("activeFilter",activeFil);
                 
             },
-            // removeAll: (state) => {
-            //     state.items = [];
-            // }
+
             removeAll: (state) => {
                 localStorage.clear();
                 state.items = [];
@@ -132,7 +88,6 @@ export const todoSlice = createSlice({
     
 export const selectFiltered = state => {
     if(state.todos.activeFilter === "all") {
-        //console.log(state.todos.items);
         return state.todos.items;
     } 
     return state.todos.items.filter((todo) => state.todos.activeFilter === "active" ? todo.completed === false : todo.completed === true);

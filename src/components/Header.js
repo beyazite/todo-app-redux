@@ -2,7 +2,7 @@ import {useState} from 'react'
 import { useDispatch } from 'react-redux';
 import { addTodo, searchWord } from "../redux/todo-slice/todoSlice";
 import { nanoid } from '@reduxjs/toolkit';
-import moment from 'moment/moment';
+// import moment from 'moment/moment';
 
 function Header() {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ function Header() {
     setTitle("");
   };
   
-  const searchBitch = (e) => {
+  const searchTodo = (e) => {
     dispatch(searchWord(e))
   }
 
@@ -27,7 +27,7 @@ function Header() {
     <div style={{width: 500}}>
       
       <form >
-      <input placeholder='Search' onChange={(e) => searchBitch(e.target.value)} />
+      <input placeholder='Search' onChange={(e) => searchTodo(e.target.value)} />
 
         <textarea type='text' autoFocus value={title} placeholder='What do you want to do?' onChange={(e) => setTitle(e.target.value)} />
         <button onClick={handleSubmit}>ADD</button>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { closeModal } from '../redux/todo-slice/modalSlice';
-import { editTodo } from '../redux/todo-slice/todoSlice';
+import { editTodo, toggleCompleted} from '../redux/todo-slice/todoSlice';
 
 function Modal() {
     const dispatch = useDispatch();
@@ -10,30 +10,23 @@ function Modal() {
     
     const [todo, setTodo] = useState(data.title);
 
-    const [completed, setCompleted] = useState(data.done);
+    const [completed, setCompleted] = useState(data.completed);
 
-    // const submitHandle = (e) => {
-    //   e.preventDefault();
-    //   dispatch(editTodo({
-    //     id: data.id,
-    //     title: todo,
-    //     completed: false
-    //   }));
-    //   close();
-    // };
+    
 
     const submitHandle = (e) => {
       e.preventDefault();
-      dispatch(editTodo({ id: data.id, title: todo, completed: false, colorGroup: "black", time: new Date() }));
+      dispatch(editTodo({ id: data.id, title: todo, completed: completed, colorGroup: "black", time: new Date() }));
       close();
     };
+
 
     const close = () => {
       dispatch(closeModal());
     };
 
 
-    
+    //onClick={() => isCompl(data.id)}
 
   return (
     <div className='modal'>
@@ -42,11 +35,11 @@ function Modal() {
           <input type='text' value={todo} onChange={e => setTodo(e.target.value)} />
           <br/>
           <label>
-            <input type='checkbox' checked={completed} onChange={e => setCompleted(e.target.checked)  } />
-            Checked as completed.
+            <input type='checkbox' onChange={e => setCompleted(e.target.checked)  } />
+            Check as completed.
           </label>
           <br/>
-          <button type='submit'>Save</button>
+          <button type='submit' >Save</button>
         </form>
         <button onClick={close}>Close</button>
       </div>

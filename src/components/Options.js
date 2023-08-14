@@ -11,13 +11,6 @@ function Options() {
   return (
     <div style={{width: 500, heigh: 150}}>
 
-      <div className='colorScheme'>
-        <div>Black</div>
-        <div>Red</div>
-        <div>Green</div>
-        <div>Purple</div>
-      </div>
-
       <div>
         <button onClick={() => dispatch(changeActiveFilter("all"))}>All</button>
         <button onClick={() => dispatch(changeActiveFilter("active"))}>Active</button>
